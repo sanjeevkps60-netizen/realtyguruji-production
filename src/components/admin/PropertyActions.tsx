@@ -22,16 +22,34 @@ export default function PropertyActions({
 
   async function update(fields: Record<string, unknown>) {
     setBusy(true);
-    await sb.from("properties").update(fields).eq("id", id);
+    const { data, error } = await sb.from("properties").update(fields).eq("id", id).select();
     setBusy(false);
+    if (error) {
+      alert(`Update failed: ${error.message}`);
+      return;
+    }
+    if (!data || data.length === 0) {
+      alert("No changes saved — your admin role doesn't have permission. Ask the Super Admin to grant access.");
+      return;
+    }
     router.refresh();
   }
 
   async function remove() {
     if (!confirm("Remove this property permanently?")) return;
     setBusy(true);
-    await sb.from("properties").delete().eq("id", id);
+    const { data, error } = await sb.from("properties").delete().eq("id", id).select();
     setBusy(false);
+    if (error) {
+      alert(`Delete failed: ${error.message}`);
+      return;
+    }
+    if (!data || data.length === 0) {
+      alert(
+        "Delete was blocked by database permissions.\n\nFix: in Supabase → SQL Editor run:\n\ndrop policy if exists properties_admin_delete on public.properties;\ncreate policy properties_admin_delete on public.properties for delete using (public.is_staff());\n\n…or set your account to super_admin."
+      );
+      return;
+    }
     router.refresh();
   }
 
