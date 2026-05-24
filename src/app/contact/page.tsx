@@ -3,9 +3,9 @@ import { site, telLink, whatsappLink } from "@/lib/site";
 import LeadForm from "@/components/LeadForm";
 
 export const metadata: Metadata = {
-  title: "Contact Realty Guruji — Gurgaon Property Consultant",
+  title: "Contact Realty Guruji — Gurugram Property Consultant",
   description:
-    "Get in touch with Realty Guruji (Rahul Soni) for rentals, resale and investment in Gurgaon. Call 098112 90102, WhatsApp, or visit our Sector 85 office.",
+    "Get in touch with Realty Guruji (Rahul Soni) for rentals, resale and investment in Gurugram. Call 098112 90102, WhatsApp, or visit our Sector 85 office.",
   alternates: { canonical: "/contact" },
 };
 
@@ -37,7 +37,7 @@ export default function ContactPage() {
             <ContactCard
               title="WhatsApp"
               value={site.contact.phoneDisplay}
-              href={whatsappLink("Hi Realty Guruji, I'd like to enquire about a property in Gurgaon.")}
+              href={whatsappLink("Hi Realty Guruji, I'd like to enquire about a property in Gurugram.")}
               cta="Chat now"
               external
             />

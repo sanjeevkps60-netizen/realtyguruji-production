@@ -8,8 +8,8 @@ type Msg = { from: "bot" | "user"; text: string; quick?: string[] };
 
 const GREETING: Msg = {
   from: "bot",
-  text: `Namaste! I'm Realty Guruji's assistant 🤝 I can help you find rentals, resale homes, the best Gurgaon sectors, or connect you with Rahul. What are you looking for?`,
-  quick: ["2/3 BHK Rentals", "Buy / Resale", "Best sectors", "Talk to Rahul"],
+  text: `Namaste! I'm Realty Guruji's assistant 🤝 I can help you find rentals, resale homes, the best Gurugram sectors, or connect you with Rahul. What are you looking for?`,
+  quick: ["2/3 BHK Rentals", "Buy / Resale", "Best sectors", "Talk to our expert"],
 };
 
 // Lightweight local knowledge base. If you configure /api/chat.php with an
@@ -21,7 +21,7 @@ function localReply(input: string): Msg {
   if (/(rent|rental|2 ?bhk|3 ?bhk|lease)/.test(q)) {
     return {
       from: "bot",
-      text: `We specialise in 2 & 3 BHK rentals across Gurgaon, typically ₹20,000–₹35,000/month (semi-furnished). Tell me your preferred sector & budget and I'll line up verified options.`,
+      text: `We specialise in 2 & 3 BHK rentals across Gurugram, typically ₹20,000–₹35,000/month (semi-furnished). Tell me your preferred sector & budget and I'll line up verified options.`,
       quick: ["Dwarka Expressway", "Sohna Road", wa("Share rental requirement")],
     };
   }
@@ -35,7 +35,7 @@ function localReply(input: string): Msg {
   if (/(sector|area|location|best|where|dwarka|golf|sohna|spr|new gurgaon)/.test(q)) {
     return {
       from: "bot",
-      text: `Top picks right now: Dwarka Expressway (high growth), Golf Course Road (luxury), SPR & New Gurgaon (value + appreciation). Want a sector-wise price & investment guide?`,
+      text: `Top picks right now: Dwarka Expressway (high growth), Golf Course Road (luxury), SPR & New Gurugram (value + appreciation). Want a sector-wise price & investment guide?`,
       quick: ["Dwarka Expressway", "Golf Course Road", wa("Best sector for my budget")],
     };
   }
@@ -65,7 +65,7 @@ function localReply(input: string): Msg {
   }
   return {
     from: "bot",
-    text: `I can help with rentals, resale, sectors, pricing and investment in Gurgaon. For anything specific, the quickest is a quick WhatsApp chat with Rahul.`,
+    text: `I can help with rentals, resale, sectors, pricing and investment in Gurugram. For anything specific, the quickest is a quick WhatsApp chat with Rahul.`,
     quick: ["2/3 BHK Rentals", "Buy / Resale", wa("Chat with Rahul")],
   };
 }

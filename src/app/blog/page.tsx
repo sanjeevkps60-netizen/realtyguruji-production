@@ -5,9 +5,9 @@ import SectionHeading from "@/components/SectionHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Gurgaon Real Estate Blog — Insights, Guides & Market Analysis",
+  title: "Gurugram Real Estate Blog — Insights, Guides & Market Analysis",
   description:
-    "Expert insights on Gurgaon real estate from Realty Guruji — investment guides, rental yields, sector analysis and buying tips for Dwarka Expressway, Golf Course Road and beyond.",
+    "Expert insights on Gurugram real estate from Realty Guruji — investment guides, rental yields, sector analysis and buying tips for Dwarka Expressway, Golf Course Road and beyond.",
   alternates: { canonical: "/blog" },
 };
 
@@ -19,7 +19,7 @@ export default function BlogPage() {
         <div className="container-rg">
           <span className="chip mb-4">Insights & guides</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            Gurgaon Real Estate <span className="text-gradient-gold">Blog</span>
+            Gurugram Real Estate <span className="text-gradient-gold">Blog</span>
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
             Data-backed market analysis, investment guides and buying tips from Rahul Soni and the Realty Guruji team.

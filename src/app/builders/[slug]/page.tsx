@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const b = getBuilderBySlug(slug);
   if (!b) return { title: "Builder not found" };
   return {
-    title: `${b.name} Gurgaon Projects, Prices & Reviews`,
+    title: `${b.name} Gurugram Projects, Prices & Reviews`,
     description: `${b.name} (${b.tagline}): ${b.intro.slice(0, 130)} Projects from ${b.priceFrom}.`,
     alternates: { canonical: `/builders/${b.slug}` },
   };
@@ -62,7 +62,7 @@ export default async function BuilderPage({ params }: { params: Promise<{ slug: 
       <section className="py-16">
         <div className="container-rg grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           <div>
-            <h2 className="font-display text-2xl font-bold text-cream">Key Projects in Gurgaon</h2>
+            <h2 className="font-display text-2xl font-bold text-cream">Key Projects in Gurugram</h2>
             <div className="mt-6 space-y-4">
               {b.projects.map((pr) => (
                 <div key={pr.name} className="card-rg flex flex-wrap items-center justify-between gap-4 p-5">
@@ -96,7 +96,7 @@ export default async function BuilderPage({ params }: { params: Promise<{ slug: 
             <div className="card-rg p-6">
               <p className="text-sm text-muted">Projects starting from</p>
               <p className="font-display text-3xl font-bold text-gradient-gold">{b.priceFrom}</p>
-              <a href={whatsappLink(`Hi Rahul, I'm interested in ${b.name} projects in Gurgaon.`)} target="_blank" rel="noopener noreferrer" className="btn-gold mt-5 w-full">
+              <a href={whatsappLink(`Hi Rahul, I'm interested in ${b.name} projects in Gurugram.`)} target="_blank" rel="noopener noreferrer" className="btn-gold mt-5 w-full">
                 Enquire about {b.name}
               </a>
             </div>

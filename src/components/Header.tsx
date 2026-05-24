@@ -81,7 +81,7 @@ export default function Header() {
             <PhoneIcon /> Call
           </a>
           <a
-            href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurgaon.")}
+            href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurugram.")}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-gold px-4 py-2 text-sm"
@@ -136,7 +136,7 @@ export default function Header() {
               <PhoneIcon /> {site.contact.phoneDisplay}
             </a>
             <a
-              href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurgaon.")}
+              href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurugram.")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold w-full"

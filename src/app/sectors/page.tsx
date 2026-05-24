@@ -5,9 +5,9 @@ import SectionHeading from "@/components/SectionHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Gurgaon Sectors & Corridors — Price Trends & Investment Guide",
+  title: "Gurugram Sectors & Corridors — Price Trends & Investment Guide",
   description:
-    "Explore every Gurgaon sector and corridor — Dwarka Expressway, Golf Course Road, SPR, Sohna Road, New Gurgaon and sectors 1–115 with price trends, connectivity and investment scores.",
+    "Explore every Gurugram sector and corridor — Dwarka Expressway, Golf Course Road, SPR, Sohna Road, New Gurugram and sectors 1–115 with price trends, connectivity and investment scores.",
   alternates: { canonical: "/sectors" },
 };
 
@@ -21,7 +21,7 @@ export default function SectorsPage() {
         <div className="container-rg">
           <span className="chip mb-4">Location intelligence</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            Gurgaon <span className="text-gradient-gold">Sectors & Corridors</span>
+            Gurugram <span className="text-gradient-gold">Sectors & Corridors</span>
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
             Price trends, connectivity, infrastructure and investment scores for every part of Gurugram — from the prime corridors to all 115 sectors.

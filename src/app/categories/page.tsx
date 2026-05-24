@@ -5,9 +5,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import SectionHeading from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Property Categories in Gurgaon",
+  title: "Property Categories in Gurugram",
   description:
-    "Explore every property category with Realty Guruji — apartments, villas, penthouses, builder floors, luxury homes, farmhouses, residential/commercial/SCO plots and office spaces in Gurgaon.",
+    "Explore every property category with Realty Guruji — apartments, villas, penthouses, builder floors, luxury homes, farmhouses, residential/commercial/SCO plots and office spaces in Gurugram.",
   alternates: { canonical: "/categories" },
 };
 
@@ -28,7 +28,7 @@ export default function CategoriesPage() {
             Property <span className="text-gradient-gold">Categories</span>
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
-            From luxury apartments and penthouses to plots, SCO and office spaces — find exactly the type of property you&apos;re looking for in Gurgaon.
+            From luxury apartments and penthouses to plots, SCO and office spaces — find exactly the type of property you&apos;re looking for in Gurugram.
           </p>
         </div>
       </section>

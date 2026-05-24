@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const s = getSectorBySlug(slug);
   if (!s) return { title: "Sector not found" };
   return {
-    title: `${s.name} Gurgaon — Property Prices, Trends & Listings`,
+    title: `${s.name} Gurugram — Property Prices, Trends & Listings`,
     description: `${s.name} (${s.zone}): ${s.intro.slice(0, 130)} Prices from ${s.priceFrom}, ${s.priceTrend}.`,
     alternates: { canonical: `/sectors/${s.slug}` },
   };
@@ -55,7 +55,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
           </nav>
           <span className="chip mb-4">{s.highlight}</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            {s.name} <span className="text-gradient-gold">Gurgaon</span>
+            {s.name} <span className="text-gradient-gold">Gurugram</span>
           </h1>
           <p className="mt-2 text-gold-bright">{s.tagline}</p>
           <p className="mt-5 max-w-3xl leading-relaxed text-muted">{s.intro}</p>
@@ -114,7 +114,7 @@ export default async function SectorPage({ params }: { params: Promise<{ slug: s
             <div className="card-rg p-6">
               <h3 className="font-display text-lg font-bold text-cream">Investing in {s.name}?</h3>
               <p className="mt-2 text-sm text-muted">Get current verified listings, fair pricing and an expert area consultation from Rahul.</p>
-              <a href={whatsappLink(`Hi Rahul, I'm interested in property in ${s.name}, Gurgaon.`)} target="_blank" rel="noopener noreferrer" className="btn-gold mt-4 w-full">
+              <a href={whatsappLink(`Hi Rahul, I'm interested in property in ${s.name}, Gurugram.`)} target="_blank" rel="noopener noreferrer" className="btn-gold mt-4 w-full">
                 Get {s.name} options
               </a>
             </div>

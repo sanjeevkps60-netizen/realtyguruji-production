@@ -7,9 +7,9 @@ import { getAllProperties } from "@/lib/properties";
 import { plotCategorySlugs } from "@/data/categories";
 
 export const metadata: Metadata = {
-  title: "Plots in Gurgaon — Residential, Commercial & SCO Plots",
+  title: "Plots in Gurugram — Residential, Commercial & SCO Plots",
   description:
-    "Buy verified residential, commercial and SCO plots in Gurgaon — DLF Garden City, New Gurgaon, SPR and Dwarka Expressway. Clear title, all approvals, high-appreciation belts.",
+    "Buy verified residential, commercial and SCO plots in Gurugram — DLF Garden City, New Gurugram, SPR and Dwarka Expressway. Clear title, all approvals, high-appreciation belts.",
   alternates: { canonical: "/plots" },
 };
 
@@ -32,10 +32,10 @@ export default async function PlotsPage() {
         <div className="container-rg">
           <span className="chip mb-4">Special section · Plots</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            Buy <span className="text-gradient-gold">Plots</span> in Gurgaon
+            Buy <span className="text-gradient-gold">Plots</span> in Gurugram
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
-            Residential, commercial and SCO plots across Gurgaon&apos;s fastest-growing corridors — DLF Garden City, New Gurgaon, SPR and Dwarka Expressway. Verified titles, all approvals, ready to register.
+            Residential, commercial and SCO plots across Gurugram&apos;s fastest-growing corridors — DLF Garden City, New Gurugram, SPR and Dwarka Expressway. Verified titles, all approvals, ready to register.
           </p>
         </div>
       </section>
@@ -50,7 +50,7 @@ export default async function PlotsPage() {
 
       <section className="border-t border-line bg-ink-soft py-16">
         <div className="container-rg">
-          <SectionHeading eyebrow="Why plots" title="Why Invest in a Plot?" subtitle="Land remains one of the most rewarding long-term plays in Gurgaon real estate." />
+          <SectionHeading eyebrow="Why plots" title="Why Invest in a Plot?" subtitle="Land remains one of the most rewarding long-term plays in Gurugram real estate." />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {why.map((w) => (
               <div key={w.title} className="card-rg h-full p-6">

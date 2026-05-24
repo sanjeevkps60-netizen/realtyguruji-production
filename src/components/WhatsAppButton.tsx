@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href={whatsappLink("Hi Realty Guruji, I'm interested in a Gurgaon property. Please share options.")}
+      href={whatsappLink("Hi Realty Guruji, I'm interested in a Gurugram property. Please share options.")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Realty Guruji on WhatsApp"

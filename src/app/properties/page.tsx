@@ -5,9 +5,9 @@ import LeadForm from "@/components/LeadForm";
 import { getAllProperties } from "@/lib/properties";
 
 export const metadata: Metadata = {
-  title: "Properties for Rent & Sale in Gurgaon",
+  title: "Properties for Rent & Sale in Gurugram",
   description:
-    "Browse verified apartments, villas, penthouses, builder floors, plots and commercial properties across Gurgaon — Dwarka Expressway, Golf Course Road, SPR & New Gurgaon.",
+    "Browse verified apartments, villas, penthouses, builder floors, plots and commercial properties across Gurugram — Dwarka Expressway, Golf Course Road, SPR & New Gurugram.",
   alternates: { canonical: "/properties" },
 };
 
@@ -20,7 +20,7 @@ export default async function PropertiesPage() {
         <div className="container-rg">
           <span className="chip mb-4">Live inventory</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            Properties in <span className="text-gradient-gold">Gurgaon</span>
+            Properties in <span className="text-gradient-gold">Gurugram</span>
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
             Verified listings across every category and prime corridor. Use the filters to find your match — or tell us your requirement and we&apos;ll source it.

@@ -1,4 +1,4 @@
-// Gurgaon location data — powers /sectors/[slug] pages.
+// Gurugram location data — powers /sectors/[slug] pages.
 // Covers named corridors (rich, hand-written) plus all numbered sectors 1–115
 // (generated with deterministic, locally-relevant content for programmatic SEO).
 
@@ -187,12 +187,12 @@ const corridors: SectorPage[] = [
   },
   {
     slug: "new-gurgaon",
-    name: "New Gurgaon",
+    name: "New Gurugram",
     kind: "corridor",
-    zone: "New Gurgaon",
+    zone: "New Gurugram",
     tagline: "Sectors 86–95 · Emerging affordable-premium hub",
     intro:
-      "New Gurgaon (sectors 86–95) along NH-48 and Pataudi Road is the city's emerging value belt, offering modern societies at accessible prices with strong appreciation potential as NPR and metro connectivity expand.",
+      "New Gurugram (sectors 86–95) along NH-48 and Pataudi Road is the city's emerging value belt, offering modern societies at accessible prices with strong appreciation potential as NPR and metro connectivity expand.",
     priceFrom: "₹85 Lakh",
     priceTrend: "+15% YoY",
     rentRange: "₹18K – ₹35K / month",
@@ -268,11 +268,11 @@ const corridors: SectorPage[] = [
 // ---- Numbered-sector zone mapping (1–115) ----
 function zoneForSector(n: number): { zone: string; priceFrom: string; score: number } {
   if (n >= 81 && n <= 115) return { zone: "Dwarka Expressway", priceFrom: "₹95 Lakh", score: 8.8 };
-  if (n >= 86 && n <= 95) return { zone: "New Gurgaon", priceFrom: "₹85 Lakh", score: 8.2 };
+  if (n >= 86 && n <= 95) return { zone: "New Gurugram", priceFrom: "₹85 Lakh", score: 8.2 };
   if (n >= 47 && n <= 57) return { zone: "Sohna Road", priceFrom: "₹1.1 Cr", score: 8.0 };
   if (n >= 58 && n <= 67) return { zone: "Golf Course Extension", priceFrom: "₹1.6 Cr", score: 8.4 };
   if (n >= 68 && n <= 80) return { zone: "SPR Corridor", priceFrom: "₹1.3 Cr", score: 8.3 };
-  if (n >= 25 && n <= 46) return { zone: "Golf Course Road / Old Gurgaon", priceFrom: "₹1.4 Cr", score: 8.1 };
+  if (n >= 25 && n <= 46) return { zone: "Golf Course Road / Old Gurugram", priceFrom: "₹1.4 Cr", score: 8.1 };
   return { zone: "Gurugram", priceFrom: "₹80 Lakh", score: 7.6 };
 }
 
@@ -307,7 +307,7 @@ function buildNumberedSector(n: number): SectorPage {
     builders: ["DLF", "M3M", "Signature Global", "Godrej"],
     faqs: [
       {
-        q: `Is Sector ${n} good for buying property in Gurgaon?`,
+        q: `Is Sector ${n} good for buying property in Gurugram?`,
         a: `Sector ${n} in the ${zone} belt offers a solid mix of connectivity, social infrastructure and price appreciation. Contact Realty Guruji for current verified listings and an expert area consultation.`,
       },
     ],

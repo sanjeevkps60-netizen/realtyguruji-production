@@ -32,7 +32,7 @@ export default async function Home() {
       <section className="relative flex min-h-[100svh] items-center overflow-hidden">
         <Image
           src="/images/hero-banner.png"
-          alt="Gurgaon skyline"
+          alt="Gurugram skyline"
           fill
           priority
           sizes="100vw"
@@ -47,7 +47,7 @@ export default async function Home() {
               <span className="h-1.5 w-1.5 rounded-full bg-[#25d366]" /> {site.founder.experienceYears}+ years · All of Gurugram
             </span>
             <h1 className="font-display text-4xl font-bold leading-[1.05] text-cream sm:text-5xl lg:text-6xl">
-              Find Your Perfect <span className="text-gradient-gold">Gurgaon</span> Home
+              Find Your Perfect <span className="text-gradient-gold">Gurugram</span> Home
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/80">
               {site.tagline}. From budget rentals to premium resale — {site.founder.name} helps you find the right property with honest advice and verified deals.
@@ -58,8 +58,8 @@ export default async function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurgaon.")} target="_blank" rel="noopener noreferrer" className="btn-gold">
-                Talk to Rahul on WhatsApp
+              <a href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurugram.")} target="_blank" rel="noopener noreferrer" className="btn-gold">
+                Talk to our expert on WhatsApp
               </a>
               <a href={telLink()} className="btn-ghost">Call {site.contact.phoneDisplay}</a>
             </div>
@@ -85,7 +85,7 @@ export default async function Home() {
               align="left"
               eyebrow="Handpicked"
               title="Featured Properties"
-              subtitle="Verified rentals and resale homes across Gurgaon's most-wanted sectors."
+              subtitle="Verified rentals and resale homes across Gurugram's most-wanted sectors."
             />
             <Link href="/properties" className="btn-ghost hidden sm:inline-flex">View all properties</Link>
           </div>
@@ -108,7 +108,7 @@ export default async function Home() {
         <div className="container-rg">
           <SectionHeading
             eyebrow="Explore by location"
-            title="Gurgaon's Prime Corridors"
+            title="Gurugram's Prime Corridors"
             subtitle="Sector-wise price trends, connectivity and investment scores — pick where you want to live or invest."
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,7 +140,7 @@ export default async function Home() {
         <div className="container-rg">
           <SectionHeading
             eyebrow="Market intelligence"
-            title="Gurgaon Market Insights"
+            title="Gurugram Market Insights"
             subtitle="Live pricing bands across rental and resale segments — so you negotiate from knowledge."
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -165,7 +165,7 @@ export default async function Home() {
         <div className="container-rg">
           <SectionHeading
             eyebrow="Trusted developers"
-            title="Top Gurgaon Builders"
+            title="Top Gurugram Builders"
             subtitle="We deal across every leading developer — new launches, resale and verified inventory."
           />
           <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -217,7 +217,7 @@ export default async function Home() {
         <div className="container-rg">
           <SectionHeading
             eyebrow="Client love"
-            title="What Gurgaon Says About Us"
+            title="What Gurugram Says About Us"
             subtitle="Real families and investors who found their match with Realty Guruji."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -253,7 +253,7 @@ export default async function Home() {
             align="left"
             eyebrow="Good to know"
             title="Frequently Asked Questions"
-            subtitle="Quick answers about how Realty Guruji works in Gurgaon."
+            subtitle="Quick answers about how Realty Guruji works in Gurugram."
           />
           <div className="space-y-3">
             {generalFaqs.map((f) => (
@@ -275,7 +275,7 @@ export default async function Home() {
         <div className="container-rg grid items-center gap-12 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl font-bold text-cream sm:text-4xl">
-              Ready to find your <span className="text-gradient-gold">Gurgaon</span> property?
+              Ready to find your <span className="text-gradient-gold">Gurugram</span> property?
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-muted">
               Tell us what you're looking for. Rahul will personally shortlist verified options and call you back — no spam, no pressure.

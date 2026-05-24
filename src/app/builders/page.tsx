@@ -6,9 +6,9 @@ import ScrollReveal from "@/components/ScrollReveal";
 import LeadForm from "@/components/LeadForm";
 
 export const metadata: Metadata = {
-  title: "Top Gurgaon Builders & Developers — DLF, M3M, Godrej & More",
+  title: "Top Gurugram Builders & Developers — DLF, M3M, Godrej & More",
   description:
-    "Explore Gurgaon's leading real estate developers — DLF, M3M, Sobha, Godrej, Signature Global, Elan, Emaar, Smartworld, Birla Estates & ATS. Projects, pricing and verified inventory.",
+    "Explore Gurugram's leading real estate developers — DLF, M3M, Sobha, Godrej, Signature Global, Elan, Emaar, Smartworld, Birla Estates & ATS. Projects, pricing and verified inventory.",
   alternates: { canonical: "/builders" },
 };
 
@@ -20,7 +20,7 @@ export default function BuildersPage() {
         <div className="container-rg">
           <span className="chip mb-4">Trusted developers</span>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            Top <span className="text-gradient-gold">Gurgaon Builders</span>
+            Top <span className="text-gradient-gold">Gurugram Builders</span>
           </h1>
           <p className="mt-4 max-w-2xl text-muted">
             We deal across every leading developer in Gurugram — new launches, resale and verified inventory at fair prices.

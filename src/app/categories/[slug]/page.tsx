@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = categoryBySlug(slug);
   if (!c) return { title: "Category not found" };
   return {
-    title: `${c.name} in Gurgaon`,
-    description: `${c.name} for sale & rent in Gurgaon — ${c.blurb} Verified listings from Realty Guruji.`,
+    title: `${c.name} in Gurugram`,
+    description: `${c.name} for sale & rent in Gurugram — ${c.blurb} Verified listings from Realty Guruji.`,
     alternates: { canonical: `/categories/${c.slug}` },
   };
 }
@@ -41,7 +41,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             <span className="text-cream">{c.name}</span>
           </nav>
           <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">
-            <span className="text-gradient-gold">{c.name}</span> in Gurgaon
+            <span className="text-gradient-gold">{c.name}</span> in Gurugram
           </h1>
           <p className="mt-4 max-w-2xl text-muted">{c.blurb}</p>
         </div>

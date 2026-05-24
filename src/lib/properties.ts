@@ -42,7 +42,7 @@ function mapDbToProperty(db: DbProperty): Property {
 
   return {
     id: s(db.id),
-    title: s(db.title, "Gurgaon Property"),
+    title: s(db.title, "Gurugram Property"),
     type,
     propertyType: isPlot ? "plot" : "society-flat",
     bhk: n(db.bhk),

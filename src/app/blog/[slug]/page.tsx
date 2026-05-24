@@ -59,7 +59,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <div className="prose-rg mt-8 space-y-5 leading-relaxed text-muted">
           <p className="text-lg text-cream/90">{post.excerpt}</p>
           <p>
-            Gurgaon's real estate market continues to mature, and informed decisions start with understanding local
+            Gurugram's real estate market continues to mature, and informed decisions start with understanding local
             dynamics — pricing, connectivity, builder reputation and rental demand. At Realty Guruji, {site.founder.name}
             brings {site.founder.experienceYears}+ years of on-ground experience to help you read the market correctly.
           </p>
@@ -67,7 +67,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <p>
             Whether you're renting a 2/3 BHK, buying a mid-segment home, or investing for appreciation, the fundamentals
             stay the same: buy in well-connected sectors with credible builders, verify every listing, and negotiate from
-            data. We help you do exactly that across every Gurgaon corridor.
+            data. We help you do exactly that across every Gurugram corridor.
           </p>
           <h2 className="font-display text-2xl font-bold text-cream">Talk to an expert</h2>
           <p>
@@ -84,7 +84,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </div>
 
         <div className="mt-12">
-          <LeadForm compact source={`blog-${post.id}`} heading="Get a consultation" sub="Have a question about Gurgaon property? We'll help." />
+          <LeadForm compact source={`blog-${post.id}`} heading="Get a consultation" sub="Have a question about Gurugram property? We'll help." />
         </div>
       </article>
 

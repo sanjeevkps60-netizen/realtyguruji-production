@@ -9,12 +9,12 @@ export interface Category {
 }
 
 export const categories: Category[] = [
-  { slug: "apartments", name: "Apartments", kind: "residential", icon: "🏢", blurb: "Society flats & high-rise apartments across Gurgaon's prime corridors." },
+  { slug: "apartments", name: "Apartments", kind: "residential", icon: "🏢", blurb: "Society flats & high-rise apartments across Gurugram's prime corridors." },
   { slug: "villas", name: "Villas", kind: "residential", icon: "🏡", blurb: "Independent and gated-community villas for spacious family living." },
   { slug: "penthouses", name: "Penthouses", kind: "residential", icon: "🌆", blurb: "Top-floor luxury penthouses with private terraces and skyline views." },
   { slug: "builder-floors", name: "Builder Floors", kind: "residential", icon: "🏠", blurb: "Independent builder floors with privacy and terrace rights." },
   { slug: "luxury-homes", name: "Luxury Homes", kind: "residential", icon: "💎", blurb: "Ultra-premium residences on Golf Course Road and beyond." },
-  { slug: "farmhouses", name: "Farmhouses", kind: "residential", icon: "🌳", blurb: "Weekend farmhouses and land retreats near Sohna and Gurgaon." },
+  { slug: "farmhouses", name: "Farmhouses", kind: "residential", icon: "🌳", blurb: "Weekend farmhouses and land retreats near Sohna and Gurugram." },
   { slug: "residential-plots", name: "Residential Plots", kind: "plot", icon: "📐", blurb: "Construction-ready residential plots in approved townships." },
   { slug: "commercial-plots", name: "Commercial Plots", kind: "plot", icon: "🏬", blurb: "High-visibility commercial plots for retail and mixed-use." },
   { slug: "sco-plots", name: "SCO Plots", kind: "plot", icon: "🏪", blurb: "Shop-Cum-Office (SCO) plots — own your commercial frontage." },

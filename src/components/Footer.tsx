@@ -40,7 +40,7 @@ export default function Footer() {
             <FooterLink href="/plots">Plots</FooterLink>
             <FooterLink href="/properties?ptype=penthouse">Penthouses</FooterLink>
             <FooterLink href="/properties?ptype=farmhouse">Farmhouses</FooterLink>
-            <FooterLink href="/sectors">Gurgaon Sectors</FooterLink>
+            <FooterLink href="/sectors">Gurugram Sectors</FooterLink>
             <FooterLink href="/builders">Top Builders</FooterLink>
             <FooterLink href="/about">About Rahul Soni</FooterLink>
           </FooterCol>

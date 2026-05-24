@@ -1,7 +1,7 @@
 export const generalFaqs: { q: string; a: string }[] = [
   {
-    q: "Which areas of Gurgaon does Realty Guruji cover?",
-    a: "We cover all of Gurugram — from Dwarka Expressway, Golf Course Road and SPR to New Gurgaon, Sohna Road and Manesar. We handle every sector from 1 to 115 plus all major corridors.",
+    q: "Which areas of Gurugram does Realty Guruji cover?",
+    a: "We cover all of Gurugram — from Dwarka Expressway, Golf Course Road and SPR to New Gurugram, Sohna Road and Manesar. We handle every sector from 1 to 115 plus all major corridors.",
   },
   {
     q: "What is your budget range for rentals and resale?",
@@ -9,10 +9,10 @@ export const generalFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Do you charge buyers a fee?",
-    a: "We believe in transparent, honest dealing. Talk to Rahul directly on WhatsApp or call to understand exactly how we work — no hidden charges, no pressure.",
+    a: "We believe in transparent, honest dealing. Talk to our expert directly on WhatsApp or call to understand exactly how we work — no hidden charges, no pressure.",
   },
   {
-    q: "Can NRIs invest in Gurgaon property through Realty Guruji?",
+    q: "Can NRIs invest in Gurugram property through Realty Guruji?",
     a: "Absolutely. We support NRI investors end-to-end — video tours, verified listings, documentation help and remote deal closure. Many of our clients invest from abroad.",
   },
   {

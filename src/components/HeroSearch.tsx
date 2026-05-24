@@ -41,7 +41,7 @@ export default function HeroSearch() {
           aria-label="Location"
           className="rounded-xl border border-line bg-ink-soft px-4 py-3 text-sm text-cream focus:border-gold focus:outline-none"
         >
-          <option value="">All Gurgaon locations</option>
+          <option value="">All Gurugram locations</option>
           {featuredSectors.map((s) => (
             <option key={s.slug} value={s.zone}>{s.name}</option>
           ))}

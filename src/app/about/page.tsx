@@ -6,15 +6,15 @@ import SectionHeading from "@/components/SectionHeading";
 import LeadForm from "@/components/LeadForm";
 
 export const metadata: Metadata = {
-  title: "About Rahul Soni — Gurgaon Real Estate Consultant",
+  title: "About Rahul Soni — Gurugram Real Estate Consultant",
   description:
-    "Meet Rahul Soni, founder of Realty Guruji — 8+ years helping Gurugram families and investors with rentals, resale, builder floors and society flats. Honest, transparent advice.",
+    "Meet Rahul Soni, founder of Realty Guruji — 14+ years helping Gurugram families and investors with rentals, resale, builder floors and society flats. Honest, transparent advice.",
   alternates: { canonical: "/about" },
 };
 
 const values = [
   { title: "Honest & Transparent", desc: "No hidden charges, no inflated prices. Just straight, dependable advice you can act on." },
-  { title: "Deep Local Knowledge", desc: "8+ years on the ground across every Gurgaon sector — from Dwarka Expressway to Golf Course Road." },
+  { title: "Deep Local Knowledge", desc: "14+ years on the ground across every Gurugram sector — from Dwarka Expressway to Golf Course Road." },
   { title: "Verified Listings Only", desc: "Owner-direct and verified inventory, so you never waste time on dead leads." },
   { title: "End-to-End Support", desc: "From shortlisting and site visits to negotiation and paperwork — including full NRI support." },
 ];
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
       <section className="py-20">
         <div className="container-rg">
-          <SectionHeading eyebrow="Why Realty Guruji" title="What Sets Us Apart" subtitle="A relationship-first approach to Gurgaon real estate — built on trust earned over hundreds of deals." />
+          <SectionHeading eyebrow="Why Realty Guruji" title="What Sets Us Apart" subtitle="A relationship-first approach to Gurugram real estate — built on trust earned over hundreds of deals." />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
               <div key={v.title} className="card-rg h-full p-6">
@@ -62,7 +62,7 @@ export default function AboutPage() {
 
       <section className="border-y border-line bg-ink-soft py-20">
         <div className="container-rg">
-          <SectionHeading eyebrow="Client stories" title="Trusted Across Gurgaon" />
+          <SectionHeading eyebrow="Client stories" title="Trusted Across Gurugram" />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.slice(0, 6).map((t) => (
               <figure key={t.id} className="card-rg h-full p-6">

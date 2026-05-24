@@ -32,7 +32,7 @@ export const builders: Builder[] = [
     ],
     faqs: [
       {
-        q: "Why invest in a DLF property in Gurgaon?",
+        q: "Why invest in a DLF property in Gurugram?",
         a: "DLF offers unmatched brand trust, prime locations and strong resale value. Realty Guruji helps you find verified DLF resale and new-launch inventory at fair prices.",
       },
     ],
@@ -76,7 +76,7 @@ export const builders: Builder[] = [
     tagline: "Affordable to premium luxury",
     founded: "2014",
     intro:
-      "Signature Global is one of Gurugram's most active developers, spanning affordable housing to premium projects across New Gurgaon and Dwarka Expressway — a strong pick for value and rental demand.",
+      "Signature Global is one of Gurugram's most active developers, spanning affordable housing to premium projects across New Gurugram and Dwarka Expressway — a strong pick for value and rental demand.",
     focus: ["Affordable housing", "Mid-premium", "Independent floors"],
     priceFrom: "₹95 Lakh",
     rating: 4.2,
