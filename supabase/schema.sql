@@ -179,7 +179,7 @@ create policy properties_staff_update on public.properties for update
   using (public.is_staff());
 drop policy if exists properties_admin_delete on public.properties;
 create policy properties_admin_delete on public.properties for delete
-  using (public.is_admin());
+  using (public.is_staff());
 
 -- Categories
 drop policy if exists categories_public_read on public.property_categories;

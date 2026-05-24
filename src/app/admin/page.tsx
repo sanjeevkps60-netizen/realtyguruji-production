@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
-import { getSessionProfile, canDelete } from "@/lib/supabase/auth";
+import { getSessionProfile } from "@/lib/supabase/auth";
 import PropertyActions from "@/components/admin/PropertyActions";
 
 export const dynamic = "force-dynamic";
@@ -33,7 +33,7 @@ export default async function AdminDashboard() {
   const available = list.filter((r) => r.status === "available").length;
   const sold = list.filter((r) => r.status === "sold" || r.status === "rented").length;
   const featured = list.filter((r) => r.is_featured).length;
-  const allowDelete = profile ? canDelete(profile.role) : false;
+  const allowDelete = !!profile; // any signed-in admin user can delete
 
   return (
     <>
