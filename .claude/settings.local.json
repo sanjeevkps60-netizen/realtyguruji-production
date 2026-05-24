@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"C:/Users/Lenovo/Website\" && echo \"---REALTY---\" && ls -la \"C:/Users/Lenovo/Realty Guruji\")",
+      "Bash(npm -v)",
+      "PowerShell($src=\"C:\\\\Users\\\\Lenovo\\\\Realty Guruji\\\\realty-guruji\"; $dst=\"C:\\\\Users\\\\Lenovo\\\\Website\"; foreach\\($f in @\\(\"package.json\",\"package-lock.json\",\"tsconfig.json\",\"next.config.ts\",\"postcss.config.mjs\",\"eslint.config.mjs\",\"next-env.d.ts\",\".gitignore\",\"realty-guruji-mysql.sql\",\"README.md\"\\)\\){ Copy-Item \"$src\\\\$f\" \"$dst\\\\$f\" -Force }; New-Item -ItemType Directory -Force -Path \"$dst\\\\src\",\"$dst\\\\public\" | Out-Null; robocopy \"$src\\\\node_modules\" \"$dst\\\\node_modules\" /E /NFL /NDL /NJH /NJS /NC /NS /MT:16 | Out-Null; robocopy \"$src\\\\public\" \"$dst\\\\public\" /E /NFL /NDL /NJH /NJS /NC /NS | Out-Null; \"Copied. node_modules present: $\\(Test-Path \"$dst\\\\node_modules\\\\next\"\\)\")",
+      "Bash(npm run *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(find \"C:/Users/Lenovo/AppData/Local/Temp\" \"C:/Users/Lenovo/Downloads\" \"C:/Users/Lenovo/.claude\" -type f \\\\\\( -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.png\" -o -iname \"*.webp\" \\\\\\) -newermt \"2026-05-22\" 2>/dev/null | head -20; echo \"---none above means not found---\")",
+      "PowerShell($out=\"C:\\\\Users\\\\Lenovo\\\\Website\\\\out\"; $stamp=Get-Date -Format \"yyyyMMdd-HHmm\"; $zip=\"C:\\\\Users\\\\Lenovo\\\\Website\\\\realtyguruji-hosting-$stamp.zip\"; if\\(Test-Path $zip\\){Remove-Item $zip -Force}; Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::CreateFromDirectory\\($out,$zip,[System.IO.Compression.CompressionLevel]::Optimal,$false\\); \"Created: $zip\"; \"Size MB: \" + [math]::Round\\(\\(Get-Item $zip\\).Length/1MB,2\\))",
+      "Bash(npm install *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=\"Realty Guruji\" -c user.email=\"realtyguruji@gmail.com\" commit -q -m \"Production-ready RealtyGuruji: Next.js SSR + Supabase + Vercel\")",
+      "Bash(git branch *)",
+      "Bash(grep -E \"\\\\.env$|\\\\.env\\\\.local|\\\\.zip|node_modules\")"
+    ]
+  }
+}
