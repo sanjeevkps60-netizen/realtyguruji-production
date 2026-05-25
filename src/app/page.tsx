@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { site, telLink, whatsappLink } from "@/lib/site";
 import { testimonials, marketInsights, featuredBuilders } from "@/data/properties";
@@ -28,45 +27,52 @@ export default async function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
 
-      {/* ---------------- HERO ---------------- */}
-      <section className="relative flex min-h-[100svh] items-center overflow-hidden">
-        <Image
-          src="/images/hero-banner.png"
-          alt="Gurugram skyline"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
+      {/* ---------------- HERO (cinematic video) ---------------- */}
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
+        {/* Background: slow-zoom skyline (fallback) + looping video when present */}
+        <div
+          className="absolute inset-0 bg-cover bg-center animate-kenburns"
+          style={{ backgroundImage: "url('/images/hero-banner.png')" }}
+          aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/70 to-ink" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-transparent" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Dark navy overlay (~60%) + bottom fade for legibility */}
+        <div className="absolute inset-0 bg-ink/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink/30 to-ink" />
 
-        <div className="container-rg relative z-10 pt-28 pb-16">
-          <div className="max-w-2xl">
-            <span className="chip mb-5">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#25d366]" /> {site.founder.experienceYears}+ years · All of Gurugram
-            </span>
-            <h1 className="font-display text-4xl font-bold leading-[1.05] text-cream sm:text-5xl lg:text-6xl">
-              Find Your Perfect <span className="text-gradient-gold">Gurugram</span> Home
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-cream/80">
-              {site.tagline}. From budget rentals to premium resale — {site.founder.name} helps you find the right property with honest advice and verified deals.
-            </p>
+        <div className="container-rg relative z-10 pt-28 pb-20 text-center">
+          <span className="chip mx-auto mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold-bright" /> Channel Partner · Since 2012 · All of Gurugram
+          </span>
+          <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold leading-[1.04] text-cream sm:text-6xl lg:text-7xl">
+            Find Your Address in <span className="text-gradient-gold">Gurugram</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-cream/85">
+            Luxury apartments, plots, SCO &amp; commercial — {site.founder.experienceYears}+ years of honest advice and verified deals with {site.founder.name}.
+          </p>
 
-            <div className="mt-8 max-w-2xl">
-              <HeroSearch />
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurugram.")} target="_blank" rel="noopener noreferrer" className="btn-gold">
-                Talk to our expert on WhatsApp
-              </a>
-              <a href={telLink()} className="btn-ghost">Call {site.contact.phoneDisplay}</a>
-            </div>
+          <div className="mx-auto mt-9 max-w-3xl">
+            <HeroSearch />
           </div>
 
-          {/* Trust stats */}
-          <div className="mt-14 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href={whatsappLink("Hi Realty Guruji, I'm looking for a property in Gurugram.")} target="_blank" rel="noopener noreferrer" className="btn-gold">
+              Talk to our expert on WhatsApp
+            </a>
+            <a href={telLink()} className="btn-ghost">Call {site.contact.phoneDisplay}</a>
+          </div>
+
+          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
             {site.stats.map((s) => (
               <div key={s.label} className="glass rounded-xl px-4 py-3 text-center">
                 <p className="font-display text-2xl font-bold text-gold-bright">{s.value}</p>
@@ -74,6 +80,13 @@ export default async function Home() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Scroll cue */}
+        <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-cream/60" aria-hidden>
+          <svg className="animate-scrollcue" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
         </div>
       </section>
 

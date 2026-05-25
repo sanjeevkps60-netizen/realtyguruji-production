@@ -49,9 +49,9 @@ export default function Header() {
           <Image
             src="/images/rg-logo.jpg"
             alt={site.name}
-            width={96}
-            height={96}
-            className="h-12 w-12 rounded-lg object-contain"
+            width={128}
+            height={128}
+            className="h-14 w-14 rounded-lg object-contain"
             priority
           />
           <span className="flex flex-col leading-none">
