@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/images/hero-banner.png"],
   },
-  icons: { icon: "/images/logo.png", apple: "/images/logo.png" },
+  icons: { icon: "/images/rg-logo.jpg", apple: "/images/rg-logo.jpg" },
   robots: { index: true, follow: true },
 };
 

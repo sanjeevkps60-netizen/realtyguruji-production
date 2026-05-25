@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center gap-2.5">
-              <Image src="/images/logo.png" alt={site.name} width={40} height={40} className="h-10 w-10 rounded-md object-contain" />
+              <Image src="/images/rg-logo.jpg" alt={site.name} width={112} height={112} className="h-14 w-14 rounded-lg object-contain" />
               <span className="font-display text-xl font-bold text-cream">
                 Realty <span className="text-gradient-gold">Guruji</span>
               </span>
