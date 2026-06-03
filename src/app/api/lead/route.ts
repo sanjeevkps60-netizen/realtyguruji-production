@@ -2,6 +2,34 @@ import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 
+// Fire-and-forget WhatsApp notification to the owner via CallMeBot.
+// Set CALLMEBOT_PHONE (digits-only, with country code e.g. 919811290102) and
+// CALLMEBOT_APIKEY in Vercel env. Silent no-op if not configured.
+async function notifyWhatsApp(lead: Record<string, unknown>) {
+  const phone = process.env.CALLMEBOT_PHONE;
+  const apikey = process.env.CALLMEBOT_APIKEY;
+  if (!phone || !apikey) return;
+  const lines = [
+    "🔔 *New Lead — Realty Guruji*",
+    `👤 ${lead.name}`,
+    `📞 ${lead.phone}`,
+    lead.email ? `✉ ${lead.email}` : null,
+    lead.property_type ? `🏠 ${lead.property_type}` : null,
+    lead.sector_preference ? `📍 ${lead.sector_preference}` : null,
+    lead.message ? `💬 ${lead.message}` : null,
+    `🌐 Source: ${lead.source}`,
+  ].filter(Boolean).join("\n");
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(lines)}&apikey=${encodeURIComponent(apikey)}`;
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 5000);
+    await fetch(url, { signal: ctrl.signal, cache: "no-store" });
+    clearTimeout(t);
+  } catch {
+    // ignore — never block the form response on notification
+  }
+}
+
 export async function POST(request: Request) {
   let body: Record<string, unknown> = {};
   try {
@@ -42,6 +70,8 @@ export async function POST(request: Request) {
     const sb = await createClient();
     const { error } = await sb.from("leads").insert(lead);
     if (error) throw error;
+    // Notify the owner on WhatsApp (no-op if CallMeBot env vars not set).
+    await notifyWhatsApp(lead);
     return NextResponse.json({ success: true, message: "Thank you! We'll contact you within minutes." });
   } catch {
     // Don't lose the lead from the user's perspective — they also get a WhatsApp fallback in the UI.
