@@ -10,15 +10,40 @@ export default function PropertyActions({
   status,
   isFeatured,
   allowDelete,
+  title,
 }: {
   id: string;
   status: string;
   isFeatured: boolean;
   allowDelete: boolean;
+  title?: string;
 }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const sb = createClient();
+
+  async function share() {
+    const url = `${window.location.origin}/properties/${id}`;
+    const shareTitle = title || "Realty Guruji Property";
+    const text = `${shareTitle} — view details:`;
+    // Try the native share sheet (mobile / modern desktop)
+    type NavWithShare = Navigator & { share?: (data: ShareData) => Promise<void> };
+    const nav = navigator as NavWithShare;
+    if (nav.share) {
+      try {
+        await nav.share({ title: shareTitle, text, url });
+        return;
+      } catch {
+        // user cancelled — fall through to copy
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      alert("✓ Link copied!\n\nPaste it in WhatsApp, Email or SMS to share with your client.");
+    } catch {
+      window.prompt("Copy this link:", url);
+    }
+  }
 
   async function update(fields: Record<string, unknown>) {
     setBusy(true);
@@ -57,6 +82,16 @@ export default function PropertyActions({
 
   return (
     <div className="flex flex-wrap items-center justify-end gap-2">
+      <a href={`/properties/${id}`} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-line px-3 py-1.5 text-xs text-cream hover:border-gold hover:text-gold-bright">
+        View
+      </a>
+      <button
+        onClick={share}
+        disabled={busy}
+        className="rounded-lg border border-line bg-gold/10 px-3 py-1.5 text-xs font-semibold text-gold-bright hover:border-gold hover:bg-gold/20 disabled:opacity-50"
+      >
+        Share link
+      </button>
       <Link href={`/admin/properties/${id}/edit`} className="rounded-lg border border-line px-3 py-1.5 text-xs text-cream hover:border-gold hover:text-gold-bright">
         Edit
       </Link>

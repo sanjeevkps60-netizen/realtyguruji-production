@@ -74,7 +74,9 @@ export default async function AdminDashboard() {
               {list.map((r) => (
                 <tr key={r.id} className="border-b border-line/60">
                   <td className="p-4 font-medium text-cream">
-                    {r.title}
+                    <a href={`/properties/${r.id}`} target="_blank" rel="noopener noreferrer" className="hover:text-gold-bright">
+                      {r.title}
+                    </a>
                     {r.is_featured && <span className="ml-2 chip">Featured</span>}
                   </td>
                   <td className="p-4 capitalize text-muted">{String(r.category).replace(/-/g, " ")}</td>
@@ -85,6 +87,7 @@ export default async function AdminDashboard() {
                   <td className="p-4">
                     <PropertyActions
                       id={String(r.id)}
+                      title={String(r.title)}
                       status={String(r.status)}
                       isFeatured={!!r.is_featured}
                       allowDelete={allowDelete}
