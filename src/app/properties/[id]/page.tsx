@@ -6,6 +6,7 @@ import { site, telLink, whatsappLink } from "@/lib/site";
 import PropertyGallery from "@/components/PropertyGallery";
 import PropertyCard from "@/components/PropertyCard";
 import LeadForm from "@/components/LeadForm";
+import ShareButton from "@/components/ShareButton";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -146,6 +147,7 @@ export default async function PropertyDetail({ params }: { params: Promise<{ id:
               <div className="mt-5 flex flex-col gap-3">
                 <a href={whatsappLink(enquiryMsg)} target="_blank" rel="noopener noreferrer" className="btn-gold w-full">Enquire on WhatsApp</a>
                 <a href={telLink()} className="btn-ghost w-full">Call {site.contact.phoneDisplay}</a>
+                <ShareButton title={p.title} />
               </div>
               <div className="my-6 hairline" />
               <p className="text-sm font-medium text-cream">Book a site visit</p>
