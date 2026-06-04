@@ -69,6 +69,9 @@ function mapDbToProperty(db: DbProperty): Property {
     nearbyPlaces: arr<{ name: string; distance: string; type: string }>(db.nearby_places),
     roi: s(db.roi_estimate) || undefined,
     category,
+    videoUrl: s(db.video_url) || undefined,
+    tour360Url: s(db.tour_360_url) || undefined,
+    model3dUrl: s(db.model_3d_url) || undefined,
   };
 }
 

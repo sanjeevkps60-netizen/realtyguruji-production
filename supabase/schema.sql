@@ -98,6 +98,9 @@ create table if not exists public.properties (
   highlights jsonb default '[]'::jsonb,
   images jsonb default '[]'::jsonb,
   nearby_places jsonb default '[]'::jsonb,
+  video_url text,
+  tour_360_url text,
+  model_3d_url text,
   latitude numeric,
   longitude numeric,
   roi_estimate text,
@@ -202,6 +205,13 @@ drop policy if exists leads_staff_read on public.leads;
 create policy leads_staff_read on public.leads for select using (public.is_staff());
 drop policy if exists leads_staff_update on public.leads;
 create policy leads_staff_update on public.leads for update using (public.is_staff());
+
+-- ============================================================
+-- Migration: media columns for existing databases (safe to re-run)
+-- ============================================================
+alter table public.properties add column if not exists video_url text;
+alter table public.properties add column if not exists tour_360_url text;
+alter table public.properties add column if not exists model_3d_url text;
 
 -- ============================================================
 -- Storage bucket for property images

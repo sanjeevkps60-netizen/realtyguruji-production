@@ -7,6 +7,7 @@ import PropertyGallery from "@/components/PropertyGallery";
 import PropertyCard from "@/components/PropertyCard";
 import LeadForm from "@/components/LeadForm";
 import ShareButton from "@/components/ShareButton";
+import PropertyMedia from "@/components/PropertyMedia";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -99,6 +100,13 @@ export default async function PropertyDetail({ params }: { params: Promise<{ id:
                 <p className="mt-3 leading-relaxed text-muted">{p.description}</p>
               </div>
             )}
+
+            <PropertyMedia
+              videoUrl={p.videoUrl}
+              tour360Url={p.tour360Url}
+              model3dUrl={p.model3dUrl}
+              title={p.title}
+            />
 
             {p.amenities.length > 0 && (
               <div className="mt-10">

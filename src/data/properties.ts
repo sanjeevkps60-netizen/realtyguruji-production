@@ -27,6 +27,10 @@ export interface Property {
   nearbyPlaces: { name: string; distance: string; type: string }[];
   roi?: string;
   category?: string; // category slug (set by the data-access layer)
+  // Immersive media (all optional)
+  videoUrl?: string;   // YouTube / Vimeo / .mp4 link
+  tour360Url?: string; // Matterport / Kuula / SuperSplat viewer / 360 panorama embed URL
+  model3dUrl?: string; // self-hosted .glb / .gltf 3D model
 }
 
 export const properties: Property[] = [
@@ -56,6 +60,8 @@ export const properties: Property[] = [
     lng: 76.9480,
     badge: 'Featured',
     featured: true,
+    videoUrl: 'https://www.youtube.com/watch?v=Y_PghdYj0E0',
+    model3dUrl: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
     nearbyPlaces: [
       { name: 'Dwarka Expressway', distance: '0.5 km', type: 'road' },
       { name: 'Local Market', distance: '1 km', type: 'market' },

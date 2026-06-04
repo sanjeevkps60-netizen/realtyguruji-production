@@ -90,6 +90,9 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
       builder: g("builder") || null,
       project_name: g("project_name") || null,
       roi_estimate: g("roi_estimate") || null,
+      video_url: g("video_url") || null,
+      tour_360_url: g("tour_360_url") || null,
+      model_3d_url: g("model_3d_url") || null,
       latitude: num("latitude"),
       longitude: num("longitude"),
       status: g("status") || "available",
@@ -220,6 +223,18 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
               ))}
             </div>
           )}
+        </div>
+      </Section>
+
+      <Section title="Tours & Media (optional)">
+        <div className="sm:col-span-2">
+          <Input name="video_url" label="Video tour — YouTube / Vimeo / .mp4 link" defaultValue={val("video_url")} placeholder="https://youtube.com/watch?v=..." />
+        </div>
+        <div className="sm:col-span-2">
+          <Input name="tour_360_url" label="360° / Virtual tour embed URL — Matterport, Kuula, or SuperSplat viewer link" defaultValue={val("tour_360_url")} placeholder="https://my.matterport.com/show/?m=..." />
+        </div>
+        <div className="sm:col-span-2">
+          <Input name="model_3d_url" label="3D model — direct .glb / .gltf file URL" defaultValue={val("model_3d_url")} placeholder="https://.../model.glb" />
         </div>
       </Section>
 
