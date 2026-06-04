@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import { testimonials } from "@/data/properties";
 import SectionHeading from "@/components/SectionHeading";
@@ -24,7 +25,7 @@ export default function AboutPage() {
     <>
       <section className="relative overflow-hidden border-b border-line pt-32 pb-16">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-surface to-ink" />
-        <div className="container-rg max-w-3xl">
+        <div className="container-rg grid items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
           <div>
             <span className="chip mb-4">Meet your consultant</span>
             <h1 className="font-display text-4xl font-bold text-cream sm:text-5xl">{site.founder.name}</h1>
@@ -42,6 +43,17 @@ export default function AboutPage() {
               <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer" className="btn-gold">Watch on YouTube</a>
               <Link href="/contact" className="btn-ghost">Get in touch</Link>
             </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-tr from-gold/25 to-transparent blur-xl" />
+            <Image
+              src="/images/rahul-soni.jpg"
+              alt={`${site.founder.name} — ${site.founder.role}, Realty Guruji`}
+              width={640}
+              height={800}
+              priority
+              className="w-full rounded-2xl border border-line object-cover"
+            />
           </div>
         </div>
       </section>
