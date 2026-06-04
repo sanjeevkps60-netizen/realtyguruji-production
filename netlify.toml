@@ -1,0 +1,10 @@
+# Netlify configuration for the Realty Guruji Next.js (SSR) site.
+# Netlify auto-installs the official Next.js runtime (@netlify/plugin-nextjs),
+# which handles SSR, API routes, image optimization and middleware.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Use the project's Node version on Netlify.
+  NODE_VERSION = "20"
