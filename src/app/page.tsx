@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site, telLink, whatsappLink } from "@/lib/site";
 import { testimonials, marketInsights, featuredBuilders } from "@/data/properties";
 import { getFeaturedProperties } from "@/lib/properties";
@@ -87,6 +88,33 @@ export default async function Home() {
           <svg className="animate-scrollcue" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14M19 12l-7 7-7-7" />
           </svg>
+        </div>
+      </section>
+
+      {/* ---------------- WHY CHOOSE US ---------------- */}
+      <section className="border-b border-line py-16 sm:py-20">
+        <div className="container-rg">
+          <SectionHeading
+            eyebrow="Why Realty Guruji"
+            title="The Trusted Choice in Gurugram"
+            subtitle="Relationship-first advisory built on honesty, deep local knowledge and verified inventory."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: "🤝", title: "Honest & Transparent", desc: "No hidden charges, no inflated prices — just straight, dependable advice." },
+              { icon: "📍", title: "All-Gurugram Expertise", desc: "Every sector and corridor, from Dwarka Expressway to Golf Course Road." },
+              { icon: "✅", title: "Verified Listings Only", desc: "Owner-direct, verified inventory so you never chase dead leads." },
+              { icon: "🌍", title: "Full NRI Support", desc: "Video tours, documentation and remote closure for investors abroad." },
+            ].map((f, i) => (
+              <ScrollReveal key={f.title} delay={i * 60}>
+                <div className="card-rg h-full p-6">
+                  <span className="text-3xl" aria-hidden>{f.icon}</span>
+                  <h3 className="mt-3 font-display text-lg font-semibold text-cream">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{f.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -202,20 +230,32 @@ export default async function Home() {
 
       {/* ---------------- ABOUT RAHUL + YOUTUBE ---------------- */}
       <section className="py-20 sm:py-24">
-        <div className="container-rg">
-          <ScrollReveal className="mx-auto max-w-3xl text-center">
+        <div className="container-rg grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
+          <ScrollReveal>
+            <div className="relative mx-auto w-full max-w-sm">
+              <div className="absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-tr from-gold/25 to-transparent blur-xl" />
+              <Image
+                src="/images/rahul-soni.jpg"
+                alt={`${site.founder.name} — ${site.founder.role}, Realty Guruji`}
+                width={640}
+                height={800}
+                className="w-full rounded-2xl border border-line object-cover"
+              />
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
             <span className="chip mb-4">Meet your consultant</span>
             <h2 className="font-display text-3xl font-bold text-cream sm:text-4xl">{site.founder.name}</h2>
-            <p className="mt-1 text-gold-bright">{site.founder.role}</p>
+            <p className="mt-1 text-gold-bright">{site.founder.role} · {site.founder.experienceYears}+ years</p>
             <p className="mt-5 leading-relaxed text-muted">{site.founder.bio}</p>
 
-            <div className="mx-auto mt-8 grid max-w-lg grid-cols-3 gap-4">
+            <div className="mt-8 grid max-w-lg grid-cols-3 gap-4">
               <YtStat value={site.socials.youtubeStats.subscribers} label="Subscribers" />
               <YtStat value={`${site.socials.youtubeStats.videos}`} label="Videos" />
               <YtStat value={site.socials.youtubeStats.views} label="Views" />
             </div>
 
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer" className="btn-gold">
                 Watch on YouTube
               </a>
@@ -277,6 +317,32 @@ export default async function Home() {
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{f.a}</p>
               </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- HOW IT WORKS ---------------- */}
+      <section className="border-t border-line py-20 sm:py-24">
+        <div className="container-rg">
+          <SectionHeading
+            eyebrow="Simple process"
+            title="How It Works"
+            subtitle="From first call to keys in hand — a clear, no-pressure journey."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              { n: "01", title: "Share your requirement", desc: "Tell us your budget, preferred sector and property type by form, call or WhatsApp." },
+              { n: "02", title: "Get matched & visit", desc: "Rahul shortlists verified options and arranges site visits within 24–48 hours." },
+              { n: "03", title: "Negotiate & close", desc: "We help you negotiate the best price and handle paperwork end-to-end." },
+            ].map((s, i) => (
+              <ScrollReveal key={s.n} delay={i * 80}>
+                <div className="card-rg h-full p-7">
+                  <span className="font-display text-4xl font-bold text-gradient-gold">{s.n}</span>
+                  <h3 className="mt-3 font-display text-xl font-semibold text-cream">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{s.desc}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

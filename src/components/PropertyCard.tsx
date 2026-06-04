@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Property } from "@/data/properties";
+import CardShare from "@/components/CardShare";
 
 export default function PropertyCard({ property, href }: { property: Property; href?: string }) {
   const p = property;
+  const target = href ?? `/properties/${p.id}`;
   return (
-    <Link href={href ?? `/properties/${p.id}`} className="card-rg group flex flex-col overflow-hidden">
+    <div className="card-rg group flex flex-col overflow-hidden">
+      <Link href={target} className="flex flex-1 flex-col">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={p.image}
@@ -25,7 +28,7 @@ export default function PropertyCard({ property, href }: { property: Property; h
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-5 pb-3">
         <h3 className="font-display text-lg font-semibold leading-snug text-cream transition-colors group-hover:text-gold-bright">
           {p.title}
         </h3>
@@ -41,12 +44,18 @@ export default function PropertyCard({ property, href }: { property: Property; h
           <Spec label={p.propertyType === "plot" ? p.facing + " facing" : p.furnishing} className="capitalize" />
         </div>
 
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-xs text-faint">Sector {p.sector} · {p.builder}</span>
-          <span className="text-sm font-semibold text-gold-bright">View details →</span>
-        </div>
+        <p className="mt-4 text-xs text-faint">Sector {p.sector} · {p.builder}</p>
       </div>
-    </Link>
+      </Link>
+
+      {/* Footer: view + share (outside the link so the button is valid + clickable) */}
+      <div className="flex items-center justify-between border-t border-line px-5 py-3">
+        <Link href={target} className="text-sm font-semibold text-gold-bright hover:underline">
+          View details →
+        </Link>
+        <CardShare id={p.id} title={p.title} />
+      </div>
+    </div>
   );
 }
 
