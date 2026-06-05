@@ -126,6 +126,18 @@ export default function LocationPicker({ initialLat, initialLng }: { initialLat?
     );
   }
 
+  // Auto-detect GPS on first open of a NEW property (no initial coords).
+  const autoTried = useRef(false);
+  useEffect(() => {
+    if (autoTried.current) return;
+    autoTried.current = true;
+    if (!initialLat && !initialLng && "geolocation" in navigator) {
+      // small delay so the map is ready before we re-centre on the GPS fix
+      setTimeout(() => useMyLocation(), 600);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function onManual(which: "lat" | "lng", v: string) {
     const num = Number(v);
     if (which === "lat") { setLat(num); if (Number.isFinite(num) && Number.isFinite(lng)) syncMap(num, lng); }
