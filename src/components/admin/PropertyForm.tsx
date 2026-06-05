@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { categories } from "@/data/categories";
+import LocationPicker from "@/components/admin/LocationPicker";
 
 type Row = Record<string, unknown>;
 
@@ -197,8 +198,6 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
         <Input name="project_name" label="Project name" defaultValue={val("project_name")} />
         <Input name="possession" label="Possession" defaultValue={val("possession")} placeholder="Ready to Move" />
         <Input name="roi_estimate" label="ROI estimate" defaultValue={val("roi_estimate")} placeholder="4.5% rental yield" />
-        <Input name="latitude" label="Latitude" defaultValue={val("latitude")} placeholder="28.4120" />
-        <Input name="longitude" label="Longitude" defaultValue={val("longitude")} placeholder="76.9480" />
         <div className="sm:col-span-2">
           <label className={labelCls}>Amenities (comma separated)</label>
           <input name="amenities" defaultValue={csv(initial?.amenities)} className={field} placeholder="Lift, Power Backup, Club House" />
@@ -224,6 +223,10 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
             </div>
           )}
         </div>
+      </Section>
+
+      <Section title="Location (live GPS or pin on map)">
+        <LocationPicker initialLat={val("latitude")} initialLng={val("longitude")} />
       </Section>
 
       <Section title="Tours & Media (optional)">

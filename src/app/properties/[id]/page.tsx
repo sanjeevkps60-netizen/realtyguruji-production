@@ -14,11 +14,33 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const p = await getPropertyById(id);
   if (!p) return { title: "Property not found" };
   const isPlot = p.propertyType === "plot";
+
+  // Absolute image URL so WhatsApp / Instagram / Facebook / X show the thumbnail.
+  const rawImg = p.image || "/images/hero-banner.png";
+  const imgAbs = rawImg.startsWith("http") ? rawImg : `${site.url}${rawImg}`;
+
+  const ogTitle = `${p.title} · ${p.priceLabel}`;
+  const ogDesc = `${isPlot ? "Plot" : `${p.bhk} BHK`} · ${p.area} ${p.areaUnit} · ${p.zone}, Gurugram. ${p.description.slice(0, 120)}`;
+  const url = `${site.url}/properties/${p.id}`;
+
   return {
     title: `${p.title} — ${p.priceLabel}`,
-    description: `${p.title} in ${p.address}. ${isPlot ? "Plot" : `${p.bhk} BHK`}, ${p.area} ${p.areaUnit}. ${p.description.slice(0, 110)}`,
+    description: ogDesc,
     alternates: { canonical: `/properties/${p.id}` },
-    openGraph: { images: p.image ? [{ url: p.image }] : [], title: p.title, description: p.description.slice(0, 140) },
+    openGraph: {
+      type: "website",
+      url,
+      siteName: site.name,
+      title: ogTitle,
+      description: ogDesc,
+      images: [{ url: imgAbs, width: 1200, height: 630, alt: p.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description: ogDesc,
+      images: [imgAbs],
+    },
   };
 }
 
