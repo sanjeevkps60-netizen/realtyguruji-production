@@ -8,3 +8,11 @@
 [build.environment]
   # Use the project's Node version on Netlify.
   NODE_VERSION = "20"
+
+# Allow Netlify Image CDN (/.netlify/images) to optimize remote property photos
+# (Supabase Storage + sample hosts) so social link previews show a small thumbnail.
+[images]
+  remote_images = [
+    "https://fnbfexfynotpumkuwnes.supabase.co/.*",
+    "https://images.unsplash.com/.*"
+  ]

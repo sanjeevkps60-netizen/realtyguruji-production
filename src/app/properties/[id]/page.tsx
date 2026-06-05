@@ -16,9 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!p) return { title: "Property not found" };
   const noBhkMeta = p.propertyType === "plot" || p.propertyType === "commercial" || !categoryHasBhk(p.category);
 
-  // Absolute image URL so WhatsApp / Instagram / Facebook / X show the thumbnail.
+  // Absolute source image, then run it through Netlify's image CDN so the OG
+  // thumbnail is a compact ~1200×630 JPEG (<300 KB) — WhatsApp/Instagram skip
+  // large images, so this guarantees the photo shows in link previews.
   const rawImg = p.image || "/images/hero-banner.png";
   const imgAbs = rawImg.startsWith("http") ? rawImg : `${site.url}${rawImg}`;
+  const ogImg = `${site.url}/.netlify/images?url=${encodeURIComponent(imgAbs)}&w=1200&h=630&fit=cover&fm=jpg&q=72`;
 
   const ogTitle = `${p.title} · ${p.priceLabel}`;
   const ogDesc = `${noBhkMeta ? (p.propertyType === "plot" ? "Plot" : "Commercial") : `${p.bhk} BHK`} · ${p.area} ${p.areaUnit} · ${p.zone}, Gurugram. ${p.description.slice(0, 120)}`;
@@ -34,13 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       siteName: site.name,
       title: ogTitle,
       description: ogDesc,
-      images: [{ url: imgAbs, width: 1200, height: 630, alt: p.title }],
+      images: [{ url: ogImg, width: 1200, height: 630, alt: p.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description: ogDesc,
-      images: [imgAbs],
+      images: [ogImg],
     },
   };
 }
