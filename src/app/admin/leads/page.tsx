@@ -1,6 +1,7 @@
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import LeadRow from "@/components/admin/LeadRow";
+import LeadsExport from "@/components/admin/LeadsExport";
 
 export const dynamic = "force-dynamic";
 
@@ -19,8 +20,13 @@ export default async function AdminLeads() {
 
   return (
     <>
-      <h1 className="font-display text-3xl font-bold">Leads</h1>
-      <p className="text-sm text-muted">{leads.length} enquir{leads.length === 1 ? "y" : "ies"}.</p>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 className="font-display text-3xl font-bold">Leads</h1>
+          <p className="text-sm text-muted">{leads.length} enquir{leads.length === 1 ? "y" : "ies"}. Export the list to run WhatsApp campaigns in AiSensy.</p>
+        </div>
+        <LeadsExport leads={leads} />
+      </div>
 
       <div className="card-rg mt-6 overflow-x-auto p-0">
         {leads.length === 0 ? (
