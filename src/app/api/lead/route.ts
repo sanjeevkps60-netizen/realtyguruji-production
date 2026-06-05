@@ -2,15 +2,10 @@ import { NextResponse } from "next/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 
-// Fire-and-forget WhatsApp notification to the owner via CallMeBot.
-// Set CALLMEBOT_PHONE (digits-only, with country code e.g. 919811290102) and
-// CALLMEBOT_APIKEY in Vercel env. Silent no-op if not configured.
-async function notifyWhatsApp(lead: Record<string, unknown>) {
-  const phone = process.env.CALLMEBOT_PHONE;
-  const apikey = process.env.CALLMEBOT_APIKEY;
-  if (!phone || !apikey) return;
-  const lines = [
-    "🔔 *New Lead — Realty Guruji*",
+// Build a readable lead message used by all notification channels.
+function leadText(lead: Record<string, unknown>): string {
+  return [
+    "🔔 New Lead — Realty Guruji",
     `👤 ${lead.name}`,
     `📞 ${lead.phone}`,
     lead.email ? `✉ ${lead.email}` : null,
@@ -19,15 +14,65 @@ async function notifyWhatsApp(lead: Record<string, unknown>) {
     lead.message ? `💬 ${lead.message}` : null,
     `🌐 Source: ${lead.source}`,
   ].filter(Boolean).join("\n");
-  const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(lines)}&apikey=${encodeURIComponent(apikey)}`;
+}
+
+async function safeFetch(url: string, init?: RequestInit) {
   try {
     const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 5000);
-    await fetch(url, { signal: ctrl.signal, cache: "no-store" });
+    const t = setTimeout(() => ctrl.abort(), 6000);
+    await fetch(url, { ...init, signal: ctrl.signal, cache: "no-store" });
     clearTimeout(t);
   } catch {
-    // ignore — never block the form response on notification
+    // never block the form on a notification failure
   }
+}
+
+// 1) Telegram — instant phone push. Set TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID.
+async function notifyTelegram(text: string) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return;
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  await safeFetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text }),
+  });
+}
+
+// 2) Email via Resend — lead lands in your inbox. Set RESEND_API_KEY + LEAD_EMAIL_TO.
+async function notifyEmail(lead: Record<string, unknown>, text: string) {
+  const key = process.env.RESEND_API_KEY;
+  const to = process.env.LEAD_EMAIL_TO;
+  if (!key || !to) return;
+  const from = process.env.LEAD_EMAIL_FROM || "Realty Guruji <onboarding@resend.dev>";
+  const html = `<h2>🔔 New Lead — Realty Guruji</h2>
+    <p><b>Name:</b> ${lead.name}<br>
+    <b>Phone:</b> <a href="tel:${lead.phone}">${lead.phone}</a><br>
+    ${lead.email ? `<b>Email:</b> ${lead.email}<br>` : ""}
+    ${lead.property_type ? `<b>Looking for:</b> ${lead.property_type}<br>` : ""}
+    ${lead.sector_preference ? `<b>Sector:</b> ${lead.sector_preference}<br>` : ""}
+    ${lead.message ? `<b>Message:</b> ${lead.message}<br>` : ""}
+    <b>Source:</b> ${lead.source}</p>`;
+  await safeFetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+    body: JSON.stringify({ from, to: [to], subject: `New Lead: ${lead.name} (${lead.phone})`, html, text }),
+  });
+}
+
+// 3) CallMeBot WhatsApp (optional legacy). Set CALLMEBOT_PHONE + CALLMEBOT_APIKEY.
+async function notifyCallMeBot(text: string) {
+  const phone = process.env.CALLMEBOT_PHONE;
+  const apikey = process.env.CALLMEBOT_APIKEY;
+  if (!phone || !apikey) return;
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${encodeURIComponent(phone)}&text=${encodeURIComponent(text)}&apikey=${encodeURIComponent(apikey)}`;
+  await safeFetch(url);
+}
+
+async function notifyOwner(lead: Record<string, unknown>) {
+  const text = leadText(lead);
+  await Promise.allSettled([notifyTelegram(text), notifyEmail(lead, text), notifyCallMeBot(text)]);
 }
 
 export async function POST(request: Request) {
@@ -70,8 +115,8 @@ export async function POST(request: Request) {
     const sb = await createClient();
     const { error } = await sb.from("leads").insert(lead);
     if (error) throw error;
-    // Notify the owner on WhatsApp (no-op if CallMeBot env vars not set).
-    await notifyWhatsApp(lead);
+    // Notify the owner via any configured channel (Telegram / Email / CallMeBot).
+    await notifyOwner(lead);
     return NextResponse.json({ success: true, message: "Thank you! We'll contact you within minutes." });
   } catch {
     // Don't lose the lead from the user's perspective — they also get a WhatsApp fallback in the UI.
