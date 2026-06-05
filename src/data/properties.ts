@@ -27,6 +27,7 @@ export interface Property {
   nearbyPlaces: { name: string; distance: string; type: string }[];
   roi?: string;
   category?: string; // category slug (set by the data-access layer)
+  slug?: string;     // readable URL slug (set by the data-access layer)
   // Immersive media (all optional)
   videoUrl?: string;   // YouTube / Vimeo / .mp4 link
   tour360Url?: string; // Matterport / Kuula / SuperSplat viewer / 360 panorama embed URL

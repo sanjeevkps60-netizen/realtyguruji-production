@@ -42,6 +42,7 @@ function mapDbToProperty(db: DbProperty): Property {
 
   return {
     id: s(db.id),
+    slug: s(db.slug) || s(db.id),
     title: s(db.title, "Gurugram Property"),
     type,
     propertyType: isPlot ? "plot" : "society-flat",
@@ -76,7 +77,12 @@ function mapDbToProperty(db: DbProperty): Property {
 }
 
 function withCategory(p: Property): Property {
-  return { ...p, category: p.category ?? propertyTypeToCategory(p.propertyType) };
+  return { ...p, slug: p.slug ?? p.id, category: p.category ?? propertyTypeToCategory(p.propertyType) };
+}
+
+// Canonical public URL for a property (prefers the readable slug).
+export function propertyHref(p: Property): string {
+  return `/properties/${p.slug || p.id}`;
 }
 
 const seedWithCategory = (): Property[] => seed.map(withCategory);
@@ -105,16 +111,24 @@ export async function getFeaturedProperties(limit = 6): Promise<Property[]> {
   return (feat.length ? feat : all).slice(0, limit);
 }
 
-export async function getPropertyById(id: string): Promise<Property | null> {
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Accepts a readable slug OR a UUID (so old shared links keep working).
+export async function getPropertyById(idOrSlug: string): Promise<Property | null> {
   if (isSupabaseConfigured()) {
     try {
       const sb = await createClient();
-      const { data } = await sb.from("properties").select("*").eq("id", id).maybeSingle();
+      // Try slug first (the new, readable URLs)…
+      let { data } = await sb.from("properties").select("*").eq("slug", idOrSlug).maybeSingle();
+      // …then fall back to UUID (old links already shared).
+      if (!data && UUID_RE.test(idOrSlug)) {
+        ({ data } = await sb.from("properties").select("*").eq("id", idOrSlug).maybeSingle());
+      }
       if (data) return mapDbToProperty(data as DbProperty);
     } catch {
       // fall through to seed
     }
   }
-  const found = seed.find((p) => p.id === id);
+  const found = seed.find((p) => p.id === idOrSlug || p.slug === idOrSlug);
   return found ? withCategory(found) : null;
 }

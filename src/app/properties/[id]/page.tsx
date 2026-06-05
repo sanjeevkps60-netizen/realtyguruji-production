@@ -25,12 +25,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   const ogTitle = `${p.title} · ${p.priceLabel}`;
   const ogDesc = `${noBhkMeta ? (p.propertyType === "plot" ? "Plot" : "Commercial") : `${p.bhk} BHK`} · ${p.area} ${p.areaUnit} · ${p.zone}, Gurugram. ${p.description.slice(0, 120)}`;
-  const url = `${site.url}/properties/${p.id}`;
+  const slug = p.slug || p.id;
+  const url = `${site.url}/properties/${slug}`;
 
   return {
     title: `${p.title} — ${p.priceLabel}`,
     description: ogDesc,
-    alternates: { canonical: `/properties/${p.id}` },
+    alternates: { canonical: `/properties/${slug}` },
     openGraph: {
       type: "website",
       url,

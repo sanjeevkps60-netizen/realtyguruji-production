@@ -7,12 +7,14 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function PropertyActions({
   id,
+  slug,
   status,
   isFeatured,
   allowDelete,
   title,
 }: {
   id: string;
+  slug?: string;
   status: string;
   isFeatured: boolean;
   allowDelete: boolean;
@@ -21,9 +23,10 @@ export default function PropertyActions({
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const sb = createClient();
+  const publicSlug = slug || id;
 
   async function share() {
-    const url = `${window.location.origin}/properties/${id}`;
+    const url = `${window.location.origin}/properties/${publicSlug}`;
     const shareTitle = title || "Realty Guruji Property";
     const text = `${shareTitle} — view details:`;
     // Try the native share sheet (mobile / modern desktop)
@@ -82,7 +85,7 @@ export default function PropertyActions({
 
   return (
     <div className="flex flex-wrap items-center justify-end gap-2">
-      <a href={`/properties/${id}`} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-line px-3 py-1.5 text-xs text-cream hover:border-gold hover:text-gold-bright">
+      <a href={`/properties/${publicSlug}`} target="_blank" rel="noopener noreferrer" className="rounded-lg border border-line px-3 py-1.5 text-xs text-cream hover:border-gold hover:text-gold-bright">
         View
       </a>
       <button

@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
   const sb = await createClient();
   const { data: rows } = await sb
     .from("properties")
-    .select("id, title, category, deal_type, sector, price, status, is_featured")
+    .select("id, slug, title, category, deal_type, sector, price, status, is_featured")
     .order("created_at", { ascending: false });
 
   const list = rows ?? [];
@@ -74,7 +74,7 @@ export default async function AdminDashboard() {
               {list.map((r) => (
                 <tr key={r.id} className="border-b border-line/60">
                   <td className="p-4 font-medium text-cream">
-                    <a href={`/properties/${r.id}`} target="_blank" rel="noopener noreferrer" className="hover:text-gold-bright">
+                    <a href={`/properties/${r.slug || r.id}`} target="_blank" rel="noopener noreferrer" className="hover:text-gold-bright">
                       {r.title}
                     </a>
                     {r.is_featured && <span className="ml-2 chip">Featured</span>}
@@ -87,6 +87,7 @@ export default async function AdminDashboard() {
                   <td className="p-4">
                     <PropertyActions
                       id={String(r.id)}
+                      slug={String(r.slug || r.id)}
                       title={String(r.title)}
                       status={String(r.status)}
                       isFeatured={!!r.is_featured}

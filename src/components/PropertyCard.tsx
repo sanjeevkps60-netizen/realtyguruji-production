@@ -6,7 +6,7 @@ import CardShare from "@/components/CardShare";
 
 export default function PropertyCard({ property, href }: { property: Property; href?: string }) {
   const p = property;
-  const target = href ?? `/properties/${p.id}`;
+  const target = href ?? `/properties/${p.slug || p.id}`;
   const isPlot = p.propertyType === "plot";
   const noBhk = isPlot || p.propertyType === "commercial" || !categoryHasBhk(p.category);
   return (
@@ -56,7 +56,7 @@ export default function PropertyCard({ property, href }: { property: Property; h
         <Link href={target} className="text-sm font-semibold text-gold-bright hover:underline">
           View details →
         </Link>
-        <CardShare id={p.id} title={p.title} />
+        <CardShare id={p.slug || p.id} title={p.title} />
       </div>
     </div>
   );
