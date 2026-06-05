@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllProperties, getPropertyById } from "@/lib/properties";
+import { categoryHasBhk } from "@/data/categories";
 import { site, telLink, whatsappLink } from "@/lib/site";
 import PropertyGallery from "@/components/PropertyGallery";
 import PropertyCard from "@/components/PropertyCard";
@@ -13,14 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const p = await getPropertyById(id);
   if (!p) return { title: "Property not found" };
-  const isPlot = p.propertyType === "plot";
+  const noBhkMeta = p.propertyType === "plot" || p.propertyType === "commercial" || !categoryHasBhk(p.category);
 
   // Absolute image URL so WhatsApp / Instagram / Facebook / X show the thumbnail.
   const rawImg = p.image || "/images/hero-banner.png";
   const imgAbs = rawImg.startsWith("http") ? rawImg : `${site.url}${rawImg}`;
 
   const ogTitle = `${p.title} · ${p.priceLabel}`;
-  const ogDesc = `${isPlot ? "Plot" : `${p.bhk} BHK`} · ${p.area} ${p.areaUnit} · ${p.zone}, Gurugram. ${p.description.slice(0, 120)}`;
+  const ogDesc = `${noBhkMeta ? (p.propertyType === "plot" ? "Plot" : "Commercial") : `${p.bhk} BHK`} · ${p.area} ${p.areaUnit} · ${p.zone}, Gurugram. ${p.description.slice(0, 120)}`;
   const url = `${site.url}/properties/${p.id}`;
 
   return {
@@ -66,9 +67,10 @@ export default async function PropertyDetail({ params }: { params: Promise<{ id:
   };
 
   const isPlot = p.propertyType === "plot";
+  const noBhk = isPlot || p.propertyType === "commercial" || !categoryHasBhk(p.category);
   const specs = [
-    ...(isPlot
-      ? [{ label: "Plot Area", value: `${p.area} ${p.areaUnit}` }]
+    ...(noBhk
+      ? [{ label: isPlot ? "Plot Area" : "Area", value: `${p.area} ${p.areaUnit}` }]
       : [
           { label: "Configuration", value: `${p.bhk} BHK` },
           { label: "Built-up Area", value: `${p.area} ${p.areaUnit}` },

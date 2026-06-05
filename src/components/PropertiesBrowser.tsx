@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState, useEffect } from "react";
 import type { Property } from "@/data/properties";
-import { categories } from "@/data/categories";
+import { categories, categoryHasBhk } from "@/data/categories";
 import PropertyCard from "@/components/PropertyCard";
 
 export default function PropertiesBrowser({
@@ -35,6 +35,8 @@ export default function PropertiesBrowser({
   const zones = useMemo(() => Array.from(new Set(items.map((p) => p.zone))).sort(), [items]);
   const activeCategory = fixedCategory ?? category;
   const isPlotView = activeCategory.includes("plot");
+  // Hide the BHK filter for plots & commercial (a specific category that has no BHK).
+  const hideBhk = isPlotView || (activeCategory !== "" && !categoryHasBhk(activeCategory));
 
   const results = useMemo(() => {
     const list = items.filter((p) => {
@@ -99,7 +101,7 @@ export default function PropertiesBrowser({
               ))}
             </select>
           )}
-          {!isPlotView && (
+          {!hideBhk && (
             <select value={bhk} onChange={(e) => setBhk(e.target.value)} aria-label="BHK" className="rounded-xl border border-line bg-ink-soft px-3 py-2.5 text-sm text-cream focus:border-gold focus:outline-none">
               <option value="">Any BHK</option>
               <option value="2">2 BHK</option>

@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Property } from "@/data/properties";
+import { categoryHasBhk } from "@/data/categories";
 import CardShare from "@/components/CardShare";
 
 export default function PropertyCard({ property, href }: { property: Property; href?: string }) {
   const p = property;
   const target = href ?? `/properties/${p.id}`;
+  const isPlot = p.propertyType === "plot";
+  const noBhk = isPlot || p.propertyType === "commercial" || !categoryHasBhk(p.category);
   return (
     <div className="card-rg group flex flex-col overflow-hidden">
       <Link href={target} className="flex flex-1 flex-col">
@@ -35,13 +38,13 @@ export default function PropertyCard({ property, href }: { property: Property; h
         <p className="mt-1 text-sm text-muted">{p.address}</p>
 
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-4 text-sm text-muted">
-          {p.propertyType === "plot" ? (
-            <Spec label="Plot" className="capitalize" />
+          {noBhk ? (
+            <Spec label={isPlot ? "Plot" : "Commercial"} className="capitalize" />
           ) : (
             <Spec label={`${p.bhk} BHK`} />
           )}
           <Spec label={`${p.area} ${p.areaUnit}`} />
-          <Spec label={p.propertyType === "plot" ? p.facing + " facing" : p.furnishing} className="capitalize" />
+          <Spec label={noBhk ? p.facing + " facing" : p.furnishing} className="capitalize" />
         </div>
 
         <p className="mt-4 text-xs text-faint">Sector {p.sector} · {p.builder}</p>

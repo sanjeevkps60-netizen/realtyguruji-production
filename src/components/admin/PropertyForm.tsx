@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { categories } from "@/data/categories";
+import { categories, categoryHasBhk } from "@/data/categories";
 import LocationPicker from "@/components/admin/LocationPicker";
 
 type Row = Record<string, unknown>;
@@ -26,6 +26,8 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [cat, setCat] = useState<string>((initial?.category as string) || "apartments");
+  const showBhk = categoryHasBhk(cat);
 
   async function onUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files ?? []);
@@ -129,7 +131,7 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
         </div>
         <div>
           <label className={labelCls}>Category</label>
-          <select name="category" defaultValue={val("category") || "apartments"} className={field}>
+          <select name="category" value={cat} onChange={(e) => setCat(e.target.value)} className={field}>
             {categories.map((c) => <option key={c.slug} value={c.slug}>{c.name}</option>)}
           </select>
         </div>
@@ -161,7 +163,11 @@ export default function PropertyForm({ initial }: { initial?: Row }) {
       </Section>
 
       <Section title="Specs & price">
-        <Input name="bhk" label="BHK (blank for plots)" defaultValue={val("bhk")} type="number" />
+        {showBhk ? (
+          <Input name="bhk" label="BHK" defaultValue={val("bhk")} type="number" />
+        ) : (
+          <input type="hidden" name="bhk" value="" readOnly />
+        )}
         <Input name="sector" label="Sector" defaultValue={val("sector")} type="number" />
         <Input name="area_name" label="Corridor / area" defaultValue={val("area_name")} placeholder="Dwarka Expressway" />
         <Input name="price" label="Price (₹ full number)" defaultValue={val("price")} placeholder="15000000" />

@@ -27,6 +27,13 @@ export function categoryBySlug(slug: string): Category | undefined {
   return categories.find((c) => c.slug === slug);
 }
 
+// BHK only applies to residential homes — NOT plots or commercial.
+export function categoryHasBhk(slug?: string | null): boolean {
+  if (!slug) return true;
+  const c = categoryBySlug(slug);
+  return c ? c.kind === "residential" : true;
+}
+
 // Map the seed data's propertyType → a category slug.
 export function propertyTypeToCategory(pt: string): string {
   switch (pt) {
