@@ -59,7 +59,13 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/images/hero-banner.png"],
   },
-  icons: { icon: "/images/rg-logo.jpg", apple: "/images/rg-logo.jpg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/images/rg-logo-mark.png", type: "image/png" },
+    ],
+    apple: "/images/rg-icon-192.png",
+  },
   robots: { index: true, follow: true },
 };
 
@@ -74,7 +80,7 @@ const jsonLd = {
   "@type": "RealEstateAgent",
   "@id": `${site.url}/#organization`,
   name: site.name,
-  image: `${site.url}/images/logo.png`,
+  image: `${site.url}/images/rg-logo.png`,
   url: site.url,
   telephone: site.contact.phoneE164,
   email: site.contact.email,
