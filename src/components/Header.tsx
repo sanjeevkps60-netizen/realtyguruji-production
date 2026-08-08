@@ -47,11 +47,11 @@ export default function Header() {
       <div className="container-rg flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5" aria-label={site.name}>
           <Image
-            src="/images/rg-logo.jpg"
+            src="/images/rg-logo-mark.png"
             alt={site.name}
             width={128}
             height={128}
-            className="h-14 w-14 rounded-lg object-contain"
+            className="h-14 w-14 object-contain"
             priority
           />
           <span className="flex flex-col leading-none">
